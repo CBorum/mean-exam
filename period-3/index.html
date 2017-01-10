@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="app">
+<div ng-controller="mCtrl" class="container">
+    <h1>MEAN Exam</h1>
+    <h2>People</h2>
+    <ul>
+       <li ng-repeat="person in people">
+           <span ng-bind="person.name"></span> - <span ng-bind="person.age"></span>
+       </li>
+    </ul>
+    <label>Name</label>
+    <input ng-model="name" type="text"/>
+    <label>Age</label>
+    <input ng-model="age" type="number"/>
+    <button ng-click="addPerson()" class="btn">Add</button>
+    <script type="text/javascript" src="public/bundle.js" charset="utf-8"></script>
+</div>
+</body>
+</html>
