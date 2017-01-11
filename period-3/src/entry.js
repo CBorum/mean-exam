@@ -4,6 +4,7 @@ const angular = require('angular')
 angular.module('app', [])
     .controller('mCtrl', function ($scope, mService) {
         $scope.people = []
+        $scope.loggedin = false
         getPeople()
 
         $scope.addPerson = function () {
@@ -12,6 +13,8 @@ angular.module('app', [])
                     'name': $scope.name,
                     'age': $scope.age
                 }, function () {
+                    $scope.name = ""
+                    $scope.age = ""
                     getPeople()
                 })
             }
@@ -21,6 +24,15 @@ angular.module('app', [])
             mService.getPeople(data => {
                 console.log(data)
                 $scope.people = data
+            })
+        }
+
+        $scope.login = function () {
+            mService.login({
+                'username': $scope.username,
+                'password': $scope.password
+            }, function () {
+
             })
         }
     })
@@ -37,6 +49,16 @@ angular.module('app', [])
         this.postPerson = function (data, callback) {
             $http.post('/people', data)
                 .then(() => {
+                    callback()
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+        this.login = function (data, callback) {
+            $http.post('/login', data)
+                .then(() => {
+                    console.log(data.body)
                     callback()
                 })
                 .catch(err => {

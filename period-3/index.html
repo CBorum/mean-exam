@@ -3,22 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" src="public/bundle.js" charset="utf-8"></script>
 </head>
 <body ng-app="app">
 <div ng-controller="mCtrl" class="container">
     <h1>MEAN Exam</h1>
-    <h2>People</h2>
-    <ul>
-       <li ng-repeat="person in people">
-           <span ng-bind="person.name"></span> - <span ng-bind="person.age"></span>
-       </li>
-    </ul>
-    <label>Name</label>
-    <input ng-model="name" type="text"/>
-    <label>Age</label>
-    <input ng-model="age" type="number"/>
-    <button ng-click="addPerson()" class="btn">Add</button>
-    <script type="text/javascript" src="public/bundle.js" charset="utf-8"></script>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>People</h2>
+            <ul>
+                <li ng-repeat="person in people">
+                    <span ng-bind="person.name"></span> - <span ng-bind="person.age"></span>
+                </li>
+            </ul>
+            <form>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" ng-model="name" type="text"/>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input class="form-control" ng-model="age" type="number"/>
+                </div>
+                <button type="submit" ng-click="addPerson()" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+        <div class="col-sm-6" ng-show="!loggedin">
+            <form>
+                <input class="form-control" ng-model="username" type="text" placeholder="Username"/>
+                <input class="form-control" ng-model="password" type="password" placeholder="Password"/>
+                <button type="submit" ng-click="login()" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
